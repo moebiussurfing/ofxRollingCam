@@ -39,8 +39,8 @@ void ofxRollingCam::update(){
 
 void ofxRollingCam::begin(){
     ofPushMatrix();
-//    cam.begin();
-//    ofTranslate(ofGetWidth()/2, ofGetHeight()/2);//TODO
+////    cam.begin();
+////    ofTranslate(ofGetWidth()/2, ofGetHeight()/2);//TODO
     ofRotateX(posN.x);
     ofRotateY(posN.y);
     ofRotateZ(posN.z);
@@ -49,7 +49,7 @@ void ofxRollingCam::begin(){
 //--------------------------------------------------------------
 
 void ofxRollingCam::end(){
-//    cam.end();
+////    cam.end();
     ofPopMatrix();
     
 }
