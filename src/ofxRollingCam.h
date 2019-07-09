@@ -4,14 +4,17 @@
  *  Copyright (c) 2014, saebashi, https://twitter.com/saebashi
  *  All rights reserved.
 */
+// modified by moebiussurfing 2019
+
 #pragma once
+//
+//#ifndef __ofxRollingCam__
+//#define __ofxRollingCam__
+//
+//#include <iostream>
 
-
-#ifndef __ofxRollingCam__
-#define __ofxRollingCam__
-
-#include <iostream>
 #include "ofMain.h"
+
 #define DEFAULT_CAM_SP 0.1
 class ofxRollingCam : public ofBaseApp{
 public:
@@ -26,12 +29,14 @@ public:
     void setRandomScale(float _min,float _max);
     void setScale(float _dist);
 
-
-//    ofEasyCam cam;
-    
     ofVec3f posN,posT,posS;
-    ofLight lig;
     float camSpeed;
     float scaleN,scaleT,scaleS;
+
+    ofVec3f target;
+    void setTarget(ofVec3f target);
+
+//    ofEasyCam cam;
+
 };
-#endif
+//#endif
