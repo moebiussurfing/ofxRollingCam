@@ -7,20 +7,22 @@
 // modified by moebiussurfing 2019
 
 #pragma once
-//
-//#ifndef __ofxRollingCam__
-//#define __ofxRollingCam__
-//
-//#include <iostream>
 
 #include "ofMain.h"
+#include "ofxTextBox.h"
 
 #define DEFAULT_CAM_SP 0.1
-class ofxRollingCam : public ofBaseApp{
+
+//class ofxRollingCam : public ofBaseApp{
+class ofxRollingCam {
+
 public:
+
     ofxRollingCam();
+
     void setup(float _camSpeed=DEFAULT_CAM_SP,float _distance=1.0);
     void update();
+    void draw();
     void begin();
     void end();
     void setCamSpeed(float _camSpeed);
@@ -38,5 +40,10 @@ public:
 
 //    ofEasyCam cam;
 
+    float dt = 1.0f;
+    void set_dt(float dt);
+
+    ofxTextBox DEBUG_Text_Roll;
+    string str;
+
 };
-//#endif

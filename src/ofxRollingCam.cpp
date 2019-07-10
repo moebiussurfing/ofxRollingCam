@@ -3,13 +3,26 @@
 //--------------------------------------------------------------
 ofxRollingCam::ofxRollingCam(){
 //    cam.disableMouseInput();
-    scaleN=1.0;
-    scaleT=scaleN;
+    scaleN = 1.0;
+    scaleT = scaleN;
 //    cam.setscaleance(ofGetHeight());
-    camSpeed=DEFAULT_CAM_SP;
+//    camSpeed = DEFAULT_CAM_SP * dt;
+    camSpeed = DEFAULT_CAM_SP;
 
     target = ofVec3f(0, 0, 0);
-    
+//    dt = 1.0f;
+
+    DEBUG_Text_Roll.setup();
+    DEBUG_Text_Roll.setPosition( glm::vec2(410, ofGetHeight() - 120) );
+    DEBUG_Text_Roll.setFontSize(8);
+    DEBUG_Text_Roll.setName("DEBUG ROLL");
+    DEBUG_Text_Roll.setShadowVisible(false);
+}
+
+//--------------------------------------------------------------
+void ofxRollingCam::set_dt(float _dt)
+{
+    dt = _dt;
 }
 
 //--------------------------------------------------------------
@@ -21,9 +34,12 @@ void ofxRollingCam::setTarget(ofVec3f _target){
 //--------------------------------------------------------------
 void ofxRollingCam::setup(float _camSpeed,float _scaleance){
 //    cam.disableMouseInput();
-    scaleN=_scaleance;
-    scaleT=scaleN;
-    camSpeed=ofClamp(_camSpeed,0,1);
+    scaleN =_scaleance;
+    scaleT = scaleN;
+
+//    _camSpeed *= dt;
+    camSpeed = ofClamp(_camSpeed,0,1);
+//    camSpeed = ofClamp(_camSpeed,0,1) * dt;
 }
 
 //--------------------------------------------------------------
@@ -36,6 +52,22 @@ void ofxRollingCam::update(){
     scaleS=scaleS*camSpeed;
     scaleN=scaleN+scaleS;
 //    cam.setscaleance(scaleN);
+
+    // text debug
+    str = "ROLLING CAMERA\n\n" ;
+    str += "scaleS: " + ofToString( scaleS ) + "\n";
+    str += "scaleT: " + ofToString( scaleT ) + "\n";
+    str += "scaleN: " + ofToString( scaleN ) + "\n";
+    str += "posS  : " + ofToString( posS ) + "\n";
+    str += "posT  : " + ofToString( posT ) + "\n";
+    str += "posN  : " + ofToString( posN ) + "\n";
+    DEBUG_Text_Roll.setText(str);
+}
+
+//--------------------------------------------------------------
+void ofxRollingCam::draw()
+{
+    DEBUG_Text_Roll.draw();
 }
 
 //--------------------------------------------------------------
@@ -56,12 +88,13 @@ void ofxRollingCam::begin(){
 void ofxRollingCam::end(){
 ////    cam.end();
     ofPopMatrix();
-    
 }
 
 //--------------------------------------------------------------
 void ofxRollingCam::setCamSpeed(float _camSpeed){
-    camSpeed=ofClamp(_camSpeed,0,1);
+//    camSpeed = ofClamp(_camSpeed,0,1) * dt;
+//    _camSpeed *= dt;
+    camSpeed = ofClamp(_camSpeed,0,1);
 }
 
 //--------------------------------------------------------------
