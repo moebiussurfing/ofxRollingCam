@@ -13,7 +13,7 @@ ofxRollingCam::ofxRollingCam(){
 //    dt = 1.0f;
 
     DEBUG_Text_Roll.setup();
-    DEBUG_Text_Roll.setPosition( glm::vec2(410, ofGetHeight() - 120) );
+    DEBUG_Text_Roll.setPosition( glm::vec2(223, 230) );
     DEBUG_Text_Roll.setFontSize(8);
     DEBUG_Text_Roll.setName("DEBUG ROLL");
     DEBUG_Text_Roll.setShadowVisible(false);
